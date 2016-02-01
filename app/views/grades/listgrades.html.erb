@@ -1,0 +1,38 @@
+<div class="pull-right"><button type="button" class="btn btn-success" id="btn-nova-turma">Nova</button></div>
+<table class="table table-striped">
+	<tr>
+		<th>TURMA</th>
+		<th>MATRICULADOS</th>
+		<th>CONFIG</th>
+	</tr>
+	<%@grades.each do |grade|%>
+	<tr>
+		<td><%=grade.name%></td>
+		<td><%=Gradeestudent.where('grade_id=?',grade.id).count%></td>
+		<td><button type="button" class="btn btn-default" onclick="visualiza_turma(<%=grade.id%>)"><span class="fa fa-pencil"></span></button></td>
+	</tr>
+	<%end%>
+</table>
+<script type="text/javascript">
+	$('#btn-nova-turma').click(function(){
+		$.ajax({
+			type:'post',
+			url:'/newgrade',
+			success:function(e){
+				$('#subconteudo').empty().append(e);
+			}
+		});
+	});
+	function visualiza_turma(idd){
+		$.ajax({
+			type:'post',
+			url:'/gradestudent',
+			data:{
+				id: idd
+			},
+			success:function(e){
+				$('#subconteudo').empty().append(e);
+			}
+		});
+	}
+</script>

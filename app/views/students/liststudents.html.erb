@@ -1,0 +1,66 @@
+
+<button id="new-student" type="button" class="btn btn-success pull-right">Novo</button><br>
+<table class="table">
+	<tr>
+		<th>NOME</th>
+		<th>NIS</th>
+		<th>MÃE</th>
+		<th>PAI</th>
+		<th>DN</th>
+		<th>ENDEREÇO</th>
+		<th>TELEFONE</th>
+		<th colspan="2">CONFIG</th>
+	</tr>
+	<%@students.each do |student|%>
+	<tr>
+		<td><%=student.name%></td>
+		<td><%=student.nis%></td>
+		<td><%=student.mother_name%></td>
+		<td><%=student.father_name%></td>
+		<td><%=student.dn%></td>
+		<td><%=student.address%></td>
+		<td><%=student.phone%></td>
+		<td><button class="btn btn-default" onclick="edita_aluno(<%=student.id%>)"><span class="fa fa-pencil"></span></button></td>
+		<td><button class="btn btn-danger" onclick="if(confirm('Deseja deletar <%=student.name%> ?')){ deleta_aluno(<%=student.id%>) }"><span class="fa fa-trash"></span></button></td>
+	</tr>
+	<%end%>
+</table>
+<script type="text/javascript">
+$('#new-student').click(function(){
+		$.ajax({
+			type:"post",
+			url:"/newstudent",
+			data:{
+
+			},
+			success:function(e){
+				$('#subconteudo').empty().append(e);
+			}
+		});
+	});
+	function edita_aluno(idd){
+		$.ajax({
+			type:'POST',
+			url: '/editstudent',
+			data:{
+				id: idd
+			},
+			success:function(e){
+				$('#subconteudo').empty().append(e);
+			}
+		});
+	}
+	function deleta_aluno(idd){
+		$.ajax({
+			type:'POST',
+			url: '/delstudent',
+			data:{
+				id: idd
+			},
+			success:function(e){
+				alert('Aluno deletado');
+				window.location='/home';
+			}
+		});
+	}
+</script>

@@ -1,0 +1,2 @@
+module DiscipliniesHelper
+end

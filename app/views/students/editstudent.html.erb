@@ -1,0 +1,62 @@
+<script type="text/javascript">
+$(document).ready(function(){
+		
+	var $fields = $(":input");
+    $fields.keyup(function() {
+        var $emptyFields = $fields.filter(function() {
+
+            // remove the $.trim if whitespace is counted as filled
+            return $.trim(this.value) === "";
+        });
+
+        if (!$emptyFields.length) {
+            $('#btn-salva-aluno').attr('disabled',true);
+        } else {
+            $('#btn-salva-aluno').attr('disabled',false);
+        }
+    });
+});
+</script>
+<form action="/home/atualizaaluno/<%=@student.id%>" method="post">
+<div class="col-sm-12">
+	<div class="row">
+		<div class="col-sm-5 col-sm-offset-2">
+			<label>NOME:</label>
+			<input type="text" name="novoaluno[name]" value="<%=@student.name%>" class="form-control validate" required>
+		</div>
+		<div class="col-sm-3">
+			<label>NIS:</label>
+			<input type="text" name="novoaluno[nis]" value="<%=@student.nis%>" class="form-control validate" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-2">
+			<label>MÃE:</label>
+			<input type="text" name="novoaluno[mother_name]" value="<%=@student.mother_name%>" class="form-control validate" required>
+		</div>
+		<div class="col-sm-4">
+			<label>PAI:</label>
+			<input type="text" name="novoaluno[father_name]" value="<%=@student.father_name%>" class="form-control validate" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2 col-sm-offset-2">
+			<label>DN:</label>
+			<input type="text" name="novoaluno[dn]" value="<%=@student.dn%>" class="form-control validate" required>
+		</div>
+		<div class="col-sm-2">
+			<label>TELEFONE:</label>
+			<input type="text" name="novoaluno[phone]" value="<%=@student.phone%>" class="form-control validate" required>
+		</div>
+		<div class="col-sm-4">
+			<label>ENDEREÇO:</label>
+			<input type="text" name="novoaluno[address]" value="<%=@student.address%>" class="form-control validate" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-2 col-sm-offset-2">
+			<button class="btn btn-success" id="btn-salva-aluno"><span class="fa fa-floppy-o"></span> Atualizar</button>
+		</div>
+	</div>
+</div>
+</form>

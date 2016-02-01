@@ -1,0 +1,57 @@
+@media(min-width: 768px){
+    .local-students,
+    .all-students{
+        min-height: 500px;
+        overflow: scroll;
+    }
+    .navbar{
+        padding: 6px;
+        border-radius: 0;
+    }
+    .navbar-invese{
+        border-color: #222 ;
+    }
+    #conteudo{
+        min-height: 900px;
+        background-color: #fff;
+        border-radius:10px;
+    }
+    .navbar-inverse{
+        margin-bottom: 0px;
+    }
+    #subconteudo{
+        margin-top:5%;
+    }
+    .vertical-nav{
+    	background-color: #222 !important;
+    	width: 340px;
+    	min-height: 900px !important;
+    	padding: 2%;
+    }
+    .btn-lg{
+        width: 67% !important;
+    }    
+    .without-padding{
+        padding: 0px !important;
+    }
+}
+@media only screen and (max-device-width: 480px){
+    .vertical-nav{
+        background-color: #222 !important;
+        padding: 8px;
+    }
+    .navbar-invese{
+        margin-bottom: 0px;
+    }
+    .without-padding{
+        padding: 3px;
+    }
+    .navbar{
+        padding: 6px;
+        border-radius: 0;
+    }
+   .btn-lg{
+        width: 100% !important;
+        vertical-align: center;
+    } 
+}

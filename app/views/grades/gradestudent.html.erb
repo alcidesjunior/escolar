@@ -1,0 +1,60 @@
+<div class="col-sm-12">
+<form action="/addstudenttograde/<%=@grades.id%>" method="post">
+<center>
+<div>
+	<button type="submit" class="btn btn-warning">Matricular <span class="fa fa-long-arrow-right"></span></button>
+</div>
+</center>
+
+<div class="col-sm-6 ">
+	<div class="panel panel-danger">
+		<div class="panel-heading">Todos os alunos</div>
+		  <div class="panel-body all-students">
+		    <table class="table table-striped">
+		    <tr>
+		    	<th>#</th>
+		    	<th>NIS</th>
+		    	<th>ALUNO</th>
+		    	<th>SITUAÇÃO</th>
+		    	<th>TURMA</th>
+		    </tr>
+		    <%@all_students.each do |all_student|%>
+		    <tr>
+			    <td><input type="checkbox" name="student[student_id][]" value="<%=all_student.id%>"></td>
+			    <td><%=all_student.nis%></td><td><%=all_student.name%></td>
+			    <%if @turma = Gradeestudent.find_by_student_id(all_student.id)%>
+			    	<td>Matriculado</td>
+			    	<td><%=Grade.find_by_id(@turma.grade_id).name%></td>
+			    <%else%>
+			    <td>Sem turma</td>
+			    <td>-</td>
+			    <%end%>
+			    <%end%>
+		    </tr>
+		    </table>
+		  </div>
+	</div>
+</div>
+
+</form>
+<div class="col-sm-6">
+	<div class="panel panel-success">
+		<div class="panel-heading">Matriculados na turma <%=@grades.name%></div>
+		  <div class="panel-body local-students">
+		  	<table class="table table-striped">
+		  	<tr>
+		  		<th>NIS</th>
+		  		<th>ALUNO</th>
+		  	</tr>
+			    <%@gradeestudent.each do |gradeestudent|%>
+			    	<% @dados_aluno=Student.find_by_id(gradeestudent.student_id)%>
+			   <tr>
+			   		<td><%=@dados_aluno.nis%></td>
+			   		<td><%=@dados_aluno.name%></td>
+			   </tr>
+			    <%end%>
+		    </table>
+		  </div>
+	</div>
+</div>
+</div>

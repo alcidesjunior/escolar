@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/assets/bootstrap.css">
+	<link rel="stylesheet" href="/assets/font-awesome.min.css">
+	<link rel="stylesheet" href="/assets/sticky-footer.css">
+	<script type="text/javascript" src="/assets/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/bootstrap.js"></script>
+
+	<meta charset="utf-8">
+	<title>Escolar</title>
+	<style>
+	#form-body{
+		margin-top: 10%
+	}
+	</style>
+</head>
+
+<body>
+<header class="col-sm-12">
+	<div class="col-sm-offset-3"><h1>Área restrita a usuários credenciados.</h1></div>
+</header>
+<section>
+		<div class="col-sm-12" id="form-body">
+			<%if flash[:message]%>
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-4 alert alert-danger"><%=flash[:message]%></div>
+			</div>
+			<%end%>
+		<%=form_for :auth_log, url: "/auth_log" do |f|%>
+		<div class="row">
+			<div class="col-sm-3 col-sm-offset-4">
+			<label>Acessar como:</label>
+				<select name="auth_log[level]" class="form-control">
+					<option value="1">Administrador</option>
+					<option value="2">Comum</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3 col-sm-offset-4">
+				<label>Senha:</label>
+				<%=f.password_field :password, class: 'form-control', required: ''%>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2 col-sm-offset-4">
+				<button type="submit" class="btn btn-default"><span class="fa fa-key"></span> Logar</button>
+			</div>
+		</div>
+		<%end%>
+	</div>
+</section>
+<footer class="footer"><br>
+	<p class="container-fluid">Rodapé</p>
+</footer>
+</body>
+</html>
