@@ -1,0 +1,56 @@
+<form action="/finalizachamada" method="post">
+<button type="submit" id="btn-finalizachamada" class="btn btn-info col-sm-offset-2">Finalizar chamada</button><br><br>
+<table class="table table-hover col-sm-offset-2" style="width:500px">
+			<tr>
+				<th>NIS</th>
+				<th>ALUNO</th>
+				<th>STATUS</th>
+			</tr>
+			<%idsel=0%>
+			<%Gradeestudent.where('grade_id=?',@grade).each do |ge|%>
+			
+			<%student=Student.find_by_id(ge.student_id)%>
+			<tr>
+				
+				<td><%=student.nis%></td>
+				<td><%=student.name%></td>
+				<td class="col-sm-2">
+					<input type="hidden" name="dailies[student_id][]" value="<%=student.id%>">
+					<input type="hidden" name="dailies[discipline_id][]" value="<%=@discipline%>">
+					<input type="hidden" name="dailies[grade_id][]" value="<%=@grade%>">
+					
+						<%if daily=Daily.find_by('student_id=? and discipline_id=? and grade_id=? and created_at::date=?',student.id,@discipline,@grade,Date.today)%>
+						
+						<style>
+						#btn-finalizachamada{
+							display: none
+						}
+							#select<%=idsel%>{
+
+								<%if daily.status=='p'%>
+									background-color: green;
+								<%else%>
+								     background-color: red;
+								<%end%>
+							}
+						</style>
+						<select name="dailies[status][]" id='select<%=idsel%>' class="form-control" onchange="$(this).val()=='p' ? $(this).css('background-color','green').css('color','white') : $(this).css('background-color','red')">
+						<option value="f">-</option>
+						<option value="p" <%=(daily.status) == 'p' ? 'selected' : ''%>>P</option>
+						<option value="f" <%=(daily.status) == 'f' ? 'selected' : ''%>>F</option>
+						</select>
+						<%else%>
+						<select name="dailies[status][]" id='select<%=idsel%>' class="form-control" onchange="$(this).val()=='p' ? $(this).css('background-color','green').css('color','white') : $(this).css('background-color','red')">
+						<option value="f">-</option>
+						<option value="p">P</option>
+						<option value="f">F</option>
+						</select>
+						<%end%>
+
+					
+				</td>
+			</tr>
+			<%idsel=idsel+1%>
+			<%end%>
+</table>
+</form>

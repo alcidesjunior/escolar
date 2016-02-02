@@ -19,12 +19,14 @@ ActiveRecord::Schema.define(version: 20160201005958) do
   create_table "dailies", force: :cascade do |t|
     t.integer  "student_id"
     t.integer  "discipline_id"
+    t.integer  "grade_id"
     t.string   "status",        default: "p"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   add_index "dailies", ["discipline_id"], name: "index_dailies_on_discipline_id", using: :btree
+  add_index "dailies", ["grade_id"], name: "index_dailies_on_grade_id", using: :btree
   add_index "dailies", ["student_id"], name: "index_dailies_on_student_id", using: :btree
 
   create_table "disciplines", force: :cascade do |t|

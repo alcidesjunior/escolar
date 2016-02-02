@@ -1,4 +1,7 @@
 @media(min-width: 768px){
+    .lista-chamada{
+        
+    }
     .local-students,
     .all-students{
         min-height: 500px;

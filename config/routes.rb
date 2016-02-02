@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   post '/home/novaturma'=>'grades#new'
   post '/gradestudent'=>'grades#gradestudent'
   post '/addstudenttograde/:id'=>'grades#addstudenttograde'
+
+  get '/listachamada'=>'dailies#listachamada'
+  post '/finalizachamada'=>'dailies#finalizachamada'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
