@@ -1,0 +1,16 @@
+dias <%=@totaldays%>
+<table class="table table-bordered table-striped">
+	<tr>
+		<th>NIS</th>
+		<th>ALUNO</th>
+		<%Discipline.all.each do |param|%>
+		<th><%=param.name%> (%)</th>
+		<%end%>
+	</tr>
+	<%Student.all.each do |param|%>
+	<tr>
+		<td><%=param.nis%></td>
+		<td><%=param.name%></td>
+	</tr>
+	<%end%>
+</table>

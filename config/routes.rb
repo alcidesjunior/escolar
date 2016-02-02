@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   root 'users#index'
-
+  #LOGIN
   post "/auth_log"=>'users#auth_log'
   get '/home'=>'homes#index'
 
+  #ALUNO
   post '/liststudents'=>'students#liststudents'
 
   post '/newstudent'=>'students#newstudent'
@@ -11,15 +12,18 @@ Rails.application.routes.draw do
   post '/editstudent'=>'students#editstudent'
   post '/delstudent'=>'students#delete'
   post '/home/atualizaaluno/:id'=>'students#update'
-
+  #MATERIAS
   post '/listgrades'=>'grades#listgrades'
   post '/newgrade'=>'grades#newgrade'
   post '/home/novaturma'=>'grades#new'
   post '/gradestudent'=>'grades#gradestudent'
   post '/addstudenttograde/:id'=>'grades#addstudenttograde'
-
+  #CHAMADA
   get '/listachamada'=>'dailies#listachamada'
   post '/finalizachamada'=>'dailies#finalizachamada'
+
+  #RELATORIOS
+  post '/liststudentsreport'=>'students#liststudentsreport'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

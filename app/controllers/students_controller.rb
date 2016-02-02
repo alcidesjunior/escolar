@@ -66,4 +66,10 @@ class StudentsController < ApplicationController
 			end
 		end
 	end
+	def listestudentsreport		
+		def is_last_day(mydate)
+		   return mydate.month != mydate.next_day.month 
+		end
+		@totaldays = is_last_day(Date.today)
+	end
 end

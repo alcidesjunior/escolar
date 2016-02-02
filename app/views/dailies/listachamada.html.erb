@@ -29,19 +29,19 @@
 
 								<%if daily.status=='p'%>
 									background-color: green;
+									color: white;
 								<%else%>
 								     background-color: red;
+								     color: white;
 								<%end%>
 							}
 						</style>
-						<select name="dailies[status][]" id='select<%=idsel%>' class="form-control" onchange="$(this).val()=='p' ? $(this).css('background-color','green').css('color','white') : $(this).css('background-color','red')">
-						<option value="f">-</option>
+						<select name="dailies[status][]" id='select<%=idsel%>' class="form-control" onchange="$(this).val()=='p' ? $(this).css('background-color','green').css('color','white') : $(this).css('background-color','red').css('color','white')">
 						<option value="p" <%=(daily.status) == 'p' ? 'selected' : ''%>>P</option>
 						<option value="f" <%=(daily.status) == 'f' ? 'selected' : ''%>>F</option>
 						</select>
 						<%else%>
-						<select name="dailies[status][]" id='select<%=idsel%>' class="form-control" onchange="$(this).val()=='p' ? $(this).css('background-color','green').css('color','white') : $(this).css('background-color','red')">
-						<option value="f">-</option>
+						<select name="dailies[status][]" id='select<%=idsel%>' class="form-control" onchange="$(this).val()=='p' ? $(this).css('background-color','green').css('color','white').css('color','white') : $(this).css('background-color','red').css('color','white')">
 						<option value="p">P</option>
 						<option value="f">F</option>
 						</select>
