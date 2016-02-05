@@ -66,10 +66,20 @@ class StudentsController < ApplicationController
 			end
 		end
 	end
-	def listestudentsreport		
-		def is_last_day(mydate)
-		   return mydate.month != mydate.next_day.month 
+	def liststudentsreport		
+		month = Time.now.month
+		year = Time.now.year
+		#calcular se é bissexto
+		#por padrao serao 20 aulas mas se for bissexto o mes de fevereiro terá 21 aulas
+		#if ((($ano % 4) == 0 and ($ano % 100)!=0) or ($ano % 400)==0)
+		if month == 2
+			if (year%4==0 and year%100!=0) or year%400==0
+				@totallessons = 21
+			else
+				@totallessons = 20
+			end
+		else
+			@totallessons = 20
 		end
-		@totaldays = is_last_day(Date.today)
 	end
 end
